@@ -43,7 +43,7 @@ public class Solution {
      * @param strs
      * @return
      */
-    public String longestCommonPrefix(String[] strs) {
+    public String longestCommonPrefixHorizontalScanning(String[] strs) {
         if (strs.length == 0) return "";
         String prefix = strs[0];
 
@@ -52,6 +52,22 @@ public class Solution {
                 System.out.println("index first: " + strs[i].indexOf(prefix));
                 prefix = prefix.substring(0, prefix.length() - 1);
                 if (prefix.isEmpty()) return "";
+            }
+        }
+
+        return prefix;
+    }
+
+    public String longestCommonPrefixVerticalScanning(String[] strs) {
+        if (strs.length == 0) return "";
+        String prefix = strs[0];
+
+        for (int i = 0; i < strs[0].length(); i++) {
+           char a = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; j++) {
+                if(i == strs[j].length() || strs[j].charAt(i) != a){
+                    return strs[0].substring(0,i);
+                }
             }
         }
 

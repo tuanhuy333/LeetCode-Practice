@@ -6,6 +6,6 @@ public class Main {
         Solution solution = new Solution();
 
         String strs[] = {"flower", "flow", "flight"};
-        String result = solution.longestCommonPrefix(strs);
+        String result = solution.longestCommonPrefixVerticalScanning(strs);
     }
 }
