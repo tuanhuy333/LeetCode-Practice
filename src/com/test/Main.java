@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        String strs[] = {"flower", "flow", "flight"};
-        String result = solution.longestCommonPrefixVerticalScanning(strs);
+        String jewels = "aA", stones = "aAAbbbb";
+
+        int result = solution.numJewelsInStones(jewels,stones);
     }
 }
