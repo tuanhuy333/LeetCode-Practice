@@ -1,8 +1,6 @@
 package com.test;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Solution {
 
@@ -130,8 +128,8 @@ public class Solution {
             setJ.add(item);
         }
         for (char item : stones.toCharArray()) {
-            if(setJ.contains(item))
-            count++;
+            if (setJ.contains(item))
+                count++;
         }
 //        for (int i = 0; i < stones.length(); i++) {
 //            for (int j = 0; j < jewels.length(); j++) {
@@ -142,6 +140,55 @@ public class Solution {
 //
 //        }
         return count;
+    }
+
+
+    /**
+     * 1365. How Many Numbers Are Smaller Than the Current Number
+     * https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+     * Ex:
+     * Input: nums = [8,1,2,2,3]
+     * Output: [4,0,1,1,3]
+     * Explanation:
+     * For nums[0]=8 there exist four smaller numbers than it (1, 2, 2 and 3).
+     * For nums[1]=1 does not exist any smaller number than it.
+     * For nums[2]=2 there exist one smaller number than it (1).
+     * For nums[3]=2 there exist one smaller number than it (1).
+     * For nums[4]=3 there exist three smaller numbers than it (1, 2 and 2).
+     *
+     * @param nums
+     * @return
+     */
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+//        int[] result = new int[nums.length];
+//        for (int i = 0; i < nums.length; i++) {
+//            int count = 0;
+//            for (int j = 0; j < nums.length; j++) {
+//                if (i == j) continue;
+//                if (nums[j] < nums[i]) {
+//                    count++;
+//                }
+//            }
+//            result[i] = count;
+//        }
+//
+//        return result;
+
+        // ANOTHER WAY
+        // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/discuss/535421/Java-Clean-HashMap-solution-with-explanation
+        Map<Integer,Integer> map = new HashMap<>();
+        int copy[] = nums.clone();
+
+        Arrays.sort(copy);
+
+        for (int i = 0; i < nums.length; i++) {
+            map.putIfAbsent(copy[i],i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            copy[i] = map.get(nums[i]);
+        }
+        return copy;
+
     }
 
 }

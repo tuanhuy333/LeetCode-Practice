@@ -6,7 +6,7 @@ public class Main {
         Solution solution = new Solution();
 
         String jewels = "aA", stones = "aAAbbbb";
-
-        int result = solution.numJewelsInStones(jewels,stones);
+        int []nums = {8,1,2,2,3};
+        int[] result = solution.smallerNumbersThanCurrent(nums);
     }
 }
