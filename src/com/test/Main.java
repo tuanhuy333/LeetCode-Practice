@@ -5,8 +5,9 @@ public class Main {
     public static void main(String[] args) {
         Solution solution = new Solution();
 
-        String jewels = "aA", stones = "aAAbbbb";
-        int []nums = {8,1,2,2,3};
-        int[] result = solution.smallerNumbersThanCurrent(nums);
+        String allowed = "abc";
+        String[] words = {"a","b","c","ab","ac","bc","abc"};
+
+        int result = solution.countConsistentStrings(allowed,words);
     }
 }

@@ -176,19 +176,57 @@ public class Solution {
 
         // ANOTHER WAY
         // https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/discuss/535421/Java-Clean-HashMap-solution-with-explanation
-        Map<Integer,Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         int copy[] = nums.clone();
 
         Arrays.sort(copy);
 
         for (int i = 0; i < nums.length; i++) {
-            map.putIfAbsent(copy[i],i);
+            map.putIfAbsent(copy[i], i);
         }
         for (int i = 0; i < nums.length; i++) {
             copy[i] = map.get(nums[i]);
         }
         return copy;
 
+    }
+
+
+    /**
+     * 1684. Count the Number of Consistent Strings
+     * https://leetcode.com/problems/count-the-number-of-consistent-strings/
+     * Ex:
+     * Input: allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+     * Output: 2
+     * Explanation: Strings "aaab" and "baa" are consistent since they only contain characters 'a' and 'b'.
+     * <p>
+     * Input: allowed = "abc", words = ["a","b","c","ab","ac","bc","abc"]
+     * Output: 7
+     * Explanation: All strings are consistent.
+     *
+     * @param allowed
+     * @param words
+     * @return
+     */
+    public int countConsistentStrings(String allowed, String[] words) {
+
+        int count = words.length;
+        int[] store = new int[26];
+
+        // frequecy appear
+        for (char ch : allowed.toCharArray()) {
+            store[ch - 'a']++;
+        }
+
+        for (String word : words) {
+            for (char ch : word.toCharArray()) {
+                if(store[ch - 'a'] <= 0){
+                    count--;
+                    break;
+                }
+            }
+        }
+        return count;
     }
 
 }
