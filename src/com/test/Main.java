@@ -6,8 +6,8 @@ public class Main {
         Solution solution = new Solution();
 
         String allowed = "abc";
-        String[] words = {"a","b","c","ab","ac","bc","abc"};
+        int[] digits = {1,9,9};
 
-        int result = solution.countConsistentStrings(allowed,words);
+        int[] result = solution.plusOne(digits);
     }
 }
