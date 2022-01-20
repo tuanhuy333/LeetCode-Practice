@@ -7,7 +7,7 @@ public class Main {
 
         String allowed = "abc";
         int[] digits = {1,9,9};
-
-        int[] result = solution.plusOne(digits);
+        String sentence = "leetcode";
+        boolean result = solution.checkIfPangram(sentence);
     }
 }
