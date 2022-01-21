@@ -276,13 +276,87 @@ public class Solution {
      * @return
      */
     public boolean checkIfPangram(String sentence) {
-        Set<Character> characterSet = new HashSet<>();
+//        Set<Character> characterSet = new HashSet<>();
+//
+//        for (Character character : sentence.toCharArray()) {
+//            characterSet.add(character);
+//        }
+//        return characterSet.size() == 26; // 26 character in English
 
-        for (Character character : sentence.toCharArray()) {
-            characterSet.add(character);
+        boolean[] letters = new boolean[26];
+
+        for (char c : sentence.toCharArray()) {
+            letters[c - 'a'] = true;
         }
-        return characterSet.size() == 26; // 26 character in English
 
+        //find any letter that not exist
+        for (boolean existLetter : letters) {
+            if (!existLetter) return false;
+        }
+
+        return true;
+
+    }
+
+    /**
+     * 2103. Rings and Rods
+     * https://leetcode.com/problems/rings-and-rods/
+     * <p>
+     * Ex:
+     * Input: rings = "B0B6G0R6R0R6G9"
+     * Output: 1
+     * Explanation:
+     * - The rod labeled 0 holds 3 rings with all colors: red, green, and blue.
+     * - The rod labeled 6 holds 3 rings, but it only has red and blue.
+     * - The rod labeled 9 holds only a green ring.
+     * Thus, the number of rods with all three colors is 1.
+     *
+     * @param rings
+     * @return
+     */
+    public int countPoints(String rings) {
+//        int count = 0;
+//
+//        for (int i = 0; i <= 9; i++) {
+//            Set set = new HashSet(); // reset
+//            for (int j = 1; j < rings.length(); j += 2) {
+//                String c = String.valueOf(rings.charAt(j));  // index rod
+//                if (c.equals(i + "")) {
+//                    set.add(rings.charAt(j - 1));  // add color's ring (previous character)
+//                    rings = rings.replace(rings.charAt(j - 1) + rings.charAt(j) + "", ""); // remove ring which color added
+//                }
+//            }
+//            if (set.size() == 3) {
+//                count++;
+//            }
+//        }
+//
+//
+//        return count;
+
+        boolean[] red = new boolean[10];
+        boolean[] green = new boolean[10];
+        boolean[] blue = new boolean[10];
+        for (int i = 0; i < rings.length(); i += 2) {
+            char color = rings.charAt(i);
+            // int num = rings.charAt(i + 1) - '0';  char to int
+            int num = Integer.parseInt(String.valueOf(rings.charAt(i + 1)));
+            if (color == 'R') {
+                red[num] = true;
+            } else if (color == 'G') {
+                green[num] = true;
+            } else {
+                blue[num] = true;
+            }
+        }
+
+        int numRings = 0;
+        for (int i = 0; i < 10; i++) {
+            if (red[i] && green[i] && blue[i]) {
+                numRings++;
+            }
+        }
+        return numRings;
     }
 
 }
