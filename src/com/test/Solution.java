@@ -429,8 +429,7 @@ public class Solution {
   /**
    * 1748. Sum of Unique Elements
    *
-   *
-   * https://leetcode.com/problems/sum-of-unique-elements/
+   * <p>https://leetcode.com/problems/sum-of-unique-elements/
    *
    * <p>You are given an integer array nums. The unique elements of an array are the elements that
    * appear exactly once in the array.
@@ -453,5 +452,94 @@ public class Solution {
       else if (map.get(nums[i]) == 2) sum -= nums[i];
     }
     return sum;
+  }
+
+  /**
+   * 1742. Maximum Number of Balls in a Box
+   * https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+   *
+   * <p>Ex: Input: lowLimit = 1, highLimit = 10
+   *
+   * <p>Output: 2
+   *
+   * <p>Explanation:
+   *
+   * <p>Box Number: 1 2 3 4 5 6 7 8 9 10 11 ...
+   *
+   * <p>Ball Count: 2 1 1 1 1 1 1 1 1 0 0 ... Box 1 has the most number of balls with 2 balls.
+   *
+   * @param lowLimit
+   * @param highLimit
+   * @return
+   */
+  public int countBalls(int lowLimit, int highLimit) {
+    Map<Integer, Integer> map = new HashMap<>();
+    int count = Integer.MIN_VALUE;
+    for (int i = lowLimit; i <= highLimit; i++) {
+      int value = 0;
+      int temp = i;
+      // sum number in number
+      while (temp != 0) {
+        value += temp % 10;
+        temp /= 10;
+      }
+      // freq occur
+      map.put(value, map.getOrDefault(value, 0) + 1);
+      // count
+      count = map.get(value) > count ? map.get(value) : count;
+    }
+    return count;
+  }
+
+  /**
+   * 2053. Kth Distinct String in an Array
+   * https://leetcode.com/problems/kth-distinct-string-in-an-array/ Ex:
+   *
+   * <p>Input: arr = ["d","b","c","b","c","a"], k = 2
+   *
+   * <p>Output: "a"
+   *
+   * <p>Explanation:
+   *
+   * <p>The only distinct strings in arr are "d" and "a".
+   *
+   * <p>"d" appears 1st, so it is the 1st distinct string.
+   *
+   * <p>"a" appears 2nd, so it is the 2nd distinct string.
+   *
+   * <p>Since k == 2, "a" is returned.
+   *
+   * @param arr
+   * @param k
+   * @return
+   */
+  public String kthDistinct(String[] arr, int k) {
+//    Map<String, Integer> mapFreq = new HashMap<>();
+//    List<String> listString = new ArrayList<String>(Arrays.asList(arr));
+//    for (String item : arr) {
+//      mapFreq.put(item, mapFreq.getOrDefault(item, 0) + 1);
+//      // after add Map
+//      if (mapFreq.get(item) == 2) {
+//        listString.removeIf(s -> s.equals(item));
+//      }
+//    }
+//    if(k > listString.size()){
+//      return "";
+//    }
+//
+//    return listString.get(k - 1);
+
+    Map<String, Integer> mapFreq = new HashMap<>();
+    for (String s : arr) {
+      mapFreq.put(s, mapFreq.getOrDefault(s, 0) + 1);
+    }
+    for (String s: arr){
+      if (mapFreq.get(s) == 1){
+        k--;
+        if (k == 0)
+          return s;
+      }
+    }
+    return "";
   }
 }

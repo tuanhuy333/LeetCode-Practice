@@ -9,8 +9,9 @@ public class Main {
         Solution solution = new Solution();
 
         String s = "zpfupfkmsuistzmtkijj";
+        String[] arr = {"d","b","c","b","c","a"};
         int[] nums = {1,2,3,2,6,1,4,4,3,4,2,4};
 
-        int result = solution.sumOfUnique(nums);
+        String result = solution.kthDistinct(arr,2);
     }
 }
